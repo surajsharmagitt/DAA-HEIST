@@ -18,9 +18,11 @@ pair<int, int> findMinMax(vector<int>& a, int left, int right, int& comparisons)
 }
 
 int main() {
+    cout << "Enter number of elements: ";
     int n; cin >> n;
     if (n <= 0) return 0;
     vector<int> a(n);
+    cout << "Enter " << n << " array elements: ";
     for (int i = 0; i < n; i++) cin >> a[i];
 
     int comparisons = 0;

@@ -3,7 +3,9 @@ using namespace std;
 
 int main() {
     long long a, b, c, d, e, f, g, h;
+    cout << "Enter matrix A (2x2), row-wise (4 numbers): ";
     cin >> a >> b >> c >> d;
+    cout << "Enter matrix B (2x2), row-wise (4 numbers): ";
     cin >> e >> f >> g >> h;
 
     long long p1 = (a + d) * (e + h);

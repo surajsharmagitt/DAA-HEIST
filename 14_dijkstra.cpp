@@ -6,10 +6,12 @@ using namespace std;
 
 int main() {
     int n, m, directed, source;
+    cout << "Enter vertices, edges, directed (1=yes, 0=no): ";
     cin >> n >> m >> directed;
     const long long INF = LLONG_MAX / 4;
     vector<vector<long long> > graph(n + 1, vector<long long>(n + 1, INF));
     for (int i = 1; i <= n; i++) graph[i][i] = 0;
+    cout << "Enter each edge as: from to weight (vertices 1 to " << n << "):\n";
     for (int i = 0; i < m; i++) {
         int u, v; long long w;
         cin >> u >> v >> w;
@@ -17,6 +19,7 @@ int main() {
         graph[u][v] = min(graph[u][v], w);
         if (!directed) graph[v][u] = min(graph[v][u], w);
     }
+    cout << "Enter source vertex (1 to " << n << "): ";
     cin >> source;
     vector<long long> dist(n + 1, INF);
     vector<bool> used(n + 1, false);

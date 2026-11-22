@@ -14,6 +14,7 @@ void moveDisk(stack<int>& a, stack<int>& b, char x, char y) {
 
 int main() {
     int n;
+    cout << "Enter number of disks (1 to 20): ";
     cin >> n;
     if (n < 1 || n > 20) return cout << "Invalid n\n", 0;
     stack<int> a, b, c;

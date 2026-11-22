@@ -12,8 +12,10 @@ bool byRatio(Item x, Item y) {
 
 int main() {
     int n; double capacity;
+    cout << "Enter number of items and knapsack capacity: ";
     cin >> n >> capacity;
     vector<Item> a(n);
+    cout << "Enter weight and profit for each item (one pair per line):\n";
     for (int i = 0; i < n; i++) {
         Item &x = a[i];
         cin >> x.weight >> x.profit;

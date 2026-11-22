@@ -15,8 +15,10 @@ int findRoot(int x, vector<int>& parent) {
 
 int main() {
     int n, m;
+    cout << "Enter number of vertices and edges: ";
     cin >> n >> m;
     vector<Edge> edges(m);
+    cout << "Enter each edge as: u v weight (vertices 1 to " << n << "):\n";
     for (int i = 0; i < m; i++) cin >> edges[i].u >> edges[i].v >> edges[i].weight;
     sort(edges.begin(), edges.end(), byWeight);
     vector<int> parent(n + 1);

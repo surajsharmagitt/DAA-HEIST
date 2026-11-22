@@ -7,10 +7,12 @@ int hashKey(int x, int m) { return (int)(((long long)x % m + m) % m); }
 
 int main() {
     int n;
+    cout << "Enter number of elements: ";
     cin >> n;
     int m = 2 * n + 1;
     vector<vector<pair<int, int> > > table(m);
     vector<int> order;
+    cout << "Enter " << n << " array elements: ";
     for (int i = 0; i < n; i++) {
         int x; cin >> x;
         vector<pair<int, int> > &bucket = table[hashKey(x, m)];

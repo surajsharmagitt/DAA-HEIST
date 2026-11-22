@@ -29,9 +29,11 @@ Answer maxSubarray(vector<int>& a, int left, int right) {
 }
 
 int main() {
+    cout << "Enter number of elements: ";
     int n; cin >> n;
     if (n <= 0) return 0;
     vector<int> a(n);
+    cout << "Enter " << n << " array elements: ";
     for (int i = 0; i < n; i++) cin >> a[i];
     Answer ans = maxSubarray(a, 0, n - 1);
     cout << "Maximum sum: " << ans.sum << '\n';

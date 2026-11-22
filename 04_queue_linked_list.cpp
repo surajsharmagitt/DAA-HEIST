@@ -30,8 +30,10 @@ void display() {
 
 int main() {
     int choice, x;
-    while (cin >> choice && choice != 5) {
-        if (choice == 1) { cin >> x; enqueue(x); }
+    while (true) {
+        cout << "1.Enqueue 2.Dequeue 3.Front 4.Display 5.Exit\nEnter choice: ";
+        if (!(cin >> choice) || choice == 5) break;
+        if (choice == 1) { cout << "Enter value to enqueue: "; cin >> x; enqueue(x); }
         else if (choice == 2) dequeue();
         else if (choice == 3) {
             if (frontNode) cout << "Front: " << frontNode->data << '\n';

@@ -20,8 +20,10 @@ void mergeSort(vector<int>& a, int left, int right) {
 }
 
 int main() {
+    cout << "Enter number of elements: ";
     int n; cin >> n;
     vector<int> a(n);
+    cout << "Enter " << n << " array elements: ";
     for (int i = 0; i < n; i++) cin >> a[i];
     if (n) mergeSort(a, 0, n - 1);
     for (int i = 0; i < n; i++) cout << a[i] << ' ';

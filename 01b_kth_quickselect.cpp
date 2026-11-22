@@ -15,9 +15,12 @@ int partitionArray(vector<int>& a, int left, int right) {
 
 int main() {
     int n, k;
+    cout << "Enter number of elements: ";
     cin >> n;
     vector<int> a(n);
+    cout << "Enter " << n << " array elements: ";
     for (int i = 0; i < n; i++) cin >> a[i];
+    cout << "Enter k (1 to " << n << "): ";
     cin >> k;
     if (k < 1 || k > n) return cout << "Invalid k\n", 0;
 

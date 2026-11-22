@@ -6,9 +6,11 @@ using namespace std;
 
 int main() {
     int n, m;
+    cout << "Enter number of vertices and edges: ";
     cin >> n >> m;
     const int INF = INT_MAX;
     vector<vector<int> > graph(n + 1, vector<int>(n + 1, INF));
+    cout << "Enter each edge as: u v weight (vertices 1 to " << n << "):\n";
     for (int i = 0; i < m; i++) {
         int u, v, w; cin >> u >> v >> w;
         graph[u][v] = min(graph[u][v], w);

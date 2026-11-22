@@ -6,9 +6,12 @@ int hashKey(long long x, int m) { return (int)((x % m + m) % m); }
 
 int main() {
     int n, target;
+    cout << "Enter number of elements: ";
     cin >> n;
     vector<int> a(n);
+    cout << "Enter " << n << " array elements: ";
     for (int i = 0; i < n; i++) cin >> a[i];
+    cout << "Enter target sum: ";
     cin >> target;
     int m = 2 * n + 1;
     vector<vector<int> > table(m);

@@ -24,8 +24,10 @@ void display() {
 
 int main() {
     int choice, x;
-    while (cin >> choice && choice != 5) {
-        if (choice == 1) { cin >> x; push(x); }
+    while (true) {
+        cout << "1.Push 2.Pop 3.Peek 4.Display 5.Exit\nEnter choice: ";
+        if (!(cin >> choice) || choice == 5) break;
+        if (choice == 1) { cout << "Enter value to push: "; cin >> x; push(x); }
         else if (choice == 2) pop();
         else if (choice == 3) {
             if (topNode) cout << "Top: " << topNode->data << '\n';

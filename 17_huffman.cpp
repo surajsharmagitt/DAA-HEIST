@@ -24,8 +24,10 @@ void printCodes(Node* root, string code) {
 }
 
 int main() {
+    cout << "Enter number of characters: ";
     int n; cin >> n;
     priority_queue<Node*, vector<Node*>, Compare> pq;
+    cout << "Enter each character and its frequency (e.g. a 5):\n";
     for (int i = 0; i < n; i++) {
         char ch; int freq;
         cin >> ch >> freq;

@@ -10,6 +10,7 @@ void hanoi(int n, char from, char help, char to) {
 
 int main() {
     int n;
+    cout << "Enter number of disks (1 to 20): ";
     cin >> n;
     if (n < 1 || n > 20) return cout << "Invalid n\n", 0;
     hanoi(n, 'A', 'B', 'C');

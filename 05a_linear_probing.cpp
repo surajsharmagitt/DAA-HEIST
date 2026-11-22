@@ -4,10 +4,12 @@ using namespace std;
 
 int main() {
     int size, n;
+    cout << "Enter hash table size and number of keys: ";
     cin >> size >> n;
     if (size <= 0) return 0;
     vector<int> table(size);
     vector<bool> used(size, false);
+    cout << "Enter " << n << " keys: ";
     for (int j = 0; j < n; j++) {
         int key; cin >> key;
         int hash = (key % size + size) % size;

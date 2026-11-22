@@ -5,9 +5,11 @@
 using namespace std;
 
 int main() {
+    cout << "Enter number of matrices: ";
     int n; cin >> n;
     if (n < 1) return 0;
     vector<long long> p(n + 1);
+    cout << "Enter " << n + 1 << " matrix dimensions (e.g. 10 20 30 for two matrices): ";
     for (int i = 0; i <= n; i++) cin >> p[i];
     const long long INF = LLONG_MAX / 4;
     vector<vector<long long> > dp(n + 1, vector<long long>(n + 1, 0));

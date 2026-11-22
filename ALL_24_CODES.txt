@@ -1,5 +1,6 @@
-===== 01a_kth_brute.cpp =====
-
+======================================================================
+01a_kth_brute.cpp
+======================================================================
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -7,9 +8,12 @@ using namespace std;
 
 int main() {
     int n, k;
+    cout << "Enter number of elements: ";
     cin >> n;
     vector<int> a(n);
+    cout << "Enter " << n << " array elements: ";
     for (int i = 0; i < n; i++) cin >> a[i];
+    cout << "Enter k (1 to " << n << "): ";
     cin >> k;
     if (k < 1 || k > n) return cout << "Invalid k\n", 0;
 
@@ -23,9 +27,9 @@ int main() {
 }
 
 
-
-===== 01b_kth_quickselect.cpp =====
-
+======================================================================
+01b_kth_quickselect.cpp
+======================================================================
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -43,9 +47,12 @@ int partitionArray(vector<int>& a, int left, int right) {
 
 int main() {
     int n, k;
+    cout << "Enter number of elements: ";
     cin >> n;
     vector<int> a(n);
+    cout << "Enter " << n << " array elements: ";
     for (int i = 0; i < n; i++) cin >> a[i];
+    cout << "Enter k (1 to " << n << "): ";
     cin >> k;
     if (k < 1 || k > n) return cout << "Invalid k\n", 0;
 
@@ -64,9 +71,9 @@ int main() {
 }
 
 
-
-===== 02a_hanoi_recursive.cpp =====
-
+======================================================================
+02a_hanoi_recursive.cpp
+======================================================================
 #include <iostream>
 using namespace std;
 
@@ -79,15 +86,16 @@ void hanoi(int n, char from, char help, char to) {
 
 int main() {
     int n;
+    cout << "Enter number of disks (1 to 20): ";
     cin >> n;
     if (n < 1 || n > 20) return cout << "Invalid n\n", 0;
     hanoi(n, 'A', 'B', 'C');
 }
 
 
-
-===== 02b_hanoi_iterative.cpp =====
-
+======================================================================
+02b_hanoi_iterative.cpp
+======================================================================
 #include <iostream>
 #include <stack>
 using namespace std;
@@ -104,6 +112,7 @@ void moveDisk(stack<int>& a, stack<int>& b, char x, char y) {
 
 int main() {
     int n;
+    cout << "Enter number of disks (1 to 20): ";
     cin >> n;
     if (n < 1 || n > 20) return cout << "Invalid n\n", 0;
     stack<int> a, b, c;
@@ -121,9 +130,9 @@ int main() {
 }
 
 
-
-===== 03_stack_linked_list.cpp =====
-
+======================================================================
+03_stack_linked_list.cpp
+======================================================================
 #include <iostream>
 using namespace std;
 
@@ -150,8 +159,10 @@ void display() {
 
 int main() {
     int choice, x;
-    while (cin >> choice && choice != 5) {
-        if (choice == 1) { cin >> x; push(x); }
+    while (true) {
+        cout << "1.Push 2.Pop 3.Peek 4.Display 5.Exit\nEnter choice: ";
+        if (!(cin >> choice) || choice == 5) break;
+        if (choice == 1) { cout << "Enter value to push: "; cin >> x; push(x); }
         else if (choice == 2) pop();
         else if (choice == 3) {
             if (topNode) cout << "Top: " << topNode->data << '\n';
@@ -162,9 +173,9 @@ int main() {
 }
 
 
-
-===== 04_queue_linked_list.cpp =====
-
+======================================================================
+04_queue_linked_list.cpp
+======================================================================
 #include <iostream>
 using namespace std;
 
@@ -197,8 +208,10 @@ void display() {
 
 int main() {
     int choice, x;
-    while (cin >> choice && choice != 5) {
-        if (choice == 1) { cin >> x; enqueue(x); }
+    while (true) {
+        cout << "1.Enqueue 2.Dequeue 3.Front 4.Display 5.Exit\nEnter choice: ";
+        if (!(cin >> choice) || choice == 5) break;
+        if (choice == 1) { cout << "Enter value to enqueue: "; cin >> x; enqueue(x); }
         else if (choice == 2) dequeue();
         else if (choice == 3) {
             if (frontNode) cout << "Front: " << frontNode->data << '\n';
@@ -209,19 +222,21 @@ int main() {
 }
 
 
-
-===== 05a_linear_probing.cpp =====
-
+======================================================================
+05a_linear_probing.cpp
+======================================================================
 #include <iostream>
 #include <vector>
 using namespace std;
 
 int main() {
     int size, n;
+    cout << "Enter hash table size and number of keys: ";
     cin >> size >> n;
     if (size <= 0) return 0;
     vector<int> table(size);
     vector<bool> used(size, false);
+    cout << "Enter " << n << " keys: ";
     for (int j = 0; j < n; j++) {
         int key; cin >> key;
         int hash = (key % size + size) % size;
@@ -245,19 +260,21 @@ int main() {
 }
 
 
-
-===== 05b_quadratic_probing.cpp =====
-
+======================================================================
+05b_quadratic_probing.cpp
+======================================================================
 #include <iostream>
 #include <vector>
 using namespace std;
 
 int main() {
     int size, n;
+    cout << "Enter hash table size and number of keys: ";
     cin >> size >> n;
     if (size <= 0) return 0;
     vector<int> table(size);
     vector<bool> used(size, false);
+    cout << "Enter " << n << " keys: ";
     for (int j = 0; j < n; j++) {
         int key; cin >> key;
         int hash = (key % size + size) % size;
@@ -281,9 +298,9 @@ int main() {
 }
 
 
-
-===== 06_two_sum.cpp =====
-
+======================================================================
+06_two_sum.cpp
+======================================================================
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -292,9 +309,12 @@ int hashKey(long long x, int m) { return (int)((x % m + m) % m); }
 
 int main() {
     int n, target;
+    cout << "Enter number of elements: ";
     cin >> n;
     vector<int> a(n);
+    cout << "Enter " << n << " array elements: ";
     for (int i = 0; i < n; i++) cin >> a[i];
+    cout << "Enter target sum: ";
     cin >> target;
     int m = 2 * n + 1;
     vector<vector<int> > table(m);
@@ -313,9 +333,9 @@ int main() {
 }
 
 
-
-===== 07_frequency_hashing.cpp =====
-
+======================================================================
+07_frequency_hashing.cpp
+======================================================================
 #include <iostream>
 #include <vector>
 #include <utility>
@@ -325,10 +345,12 @@ int hashKey(int x, int m) { return (int)(((long long)x % m + m) % m); }
 
 int main() {
     int n;
+    cout << "Enter number of elements: ";
     cin >> n;
     int m = 2 * n + 1;
     vector<vector<pair<int, int> > > table(m);
     vector<int> order;
+    cout << "Enter " << n << " array elements: ";
     for (int i = 0; i < n; i++) {
         int x; cin >> x;
         vector<pair<int, int> > &bucket = table[hashKey(x, m)];
@@ -347,9 +369,9 @@ int main() {
 }
 
 
-
-===== 08_merge_sort.cpp =====
-
+======================================================================
+08_merge_sort.cpp
+======================================================================
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -372,8 +394,10 @@ void mergeSort(vector<int>& a, int left, int right) {
 }
 
 int main() {
+    cout << "Enter number of elements: ";
     int n; cin >> n;
     vector<int> a(n);
+    cout << "Enter " << n << " array elements: ";
     for (int i = 0; i < n; i++) cin >> a[i];
     if (n) mergeSort(a, 0, n - 1);
     for (int i = 0; i < n; i++) cout << a[i] << ' ';
@@ -381,9 +405,9 @@ int main() {
 }
 
 
-
-===== 09_quick_sort.cpp =====
-
+======================================================================
+09_quick_sort.cpp
+======================================================================
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -405,8 +429,10 @@ void quickSort(vector<int>& a, int left, int right) {
 }
 
 int main() {
+    cout << "Enter number of elements: ";
     int n; cin >> n;
     vector<int> a(n);
+    cout << "Enter " << n << " array elements: ";
     for (int i = 0; i < n; i++) cin >> a[i];
     if (n) quickSort(a, 0, n - 1);
     for (int i = 0; i < n; i++) cout << a[i] << ' ';
@@ -414,9 +440,9 @@ int main() {
 }
 
 
-
-===== 10_max_min_divide_conquer.cpp =====
-
+======================================================================
+10_max_min_divide_conquer.cpp
+======================================================================
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -437,9 +463,11 @@ pair<int, int> findMinMax(vector<int>& a, int left, int right, int& comparisons)
 }
 
 int main() {
+    cout << "Enter number of elements: ";
     int n; cin >> n;
     if (n <= 0) return 0;
     vector<int> a(n);
+    cout << "Enter " << n << " array elements: ";
     for (int i = 0; i < n; i++) cin >> a[i];
 
     int comparisons = 0;
@@ -450,9 +478,9 @@ int main() {
 }
 
 
-
-===== 11_maximum_subarray.cpp =====
-
+======================================================================
+11_maximum_subarray.cpp
+======================================================================
 #include <iostream>
 #include <vector>
 #include <climits>
@@ -484,9 +512,11 @@ Answer maxSubarray(vector<int>& a, int left, int right) {
 }
 
 int main() {
+    cout << "Enter number of elements: ";
     int n; cin >> n;
     if (n <= 0) return 0;
     vector<int> a(n);
+    cout << "Enter " << n << " array elements: ";
     for (int i = 0; i < n; i++) cin >> a[i];
     Answer ans = maxSubarray(a, 0, n - 1);
     cout << "Maximum sum: " << ans.sum << '\n';
@@ -495,15 +525,17 @@ int main() {
 }
 
 
-
-===== 12_strassen_matrix.cpp =====
-
+======================================================================
+12_strassen_matrix.cpp
+======================================================================
 #include <iostream>
 using namespace std;
 
 int main() {
     long long a, b, c, d, e, f, g, h;
+    cout << "Enter matrix A (2x2), row-wise (4 numbers): ";
     cin >> a >> b >> c >> d;
+    cout << "Enter matrix B (2x2), row-wise (4 numbers): ";
     cin >> e >> f >> g >> h;
 
     long long p1 = (a + d) * (e + h);
@@ -523,9 +555,9 @@ int main() {
 }
 
 
-
-===== 13_fractional_knapsack.cpp =====
-
+======================================================================
+13_fractional_knapsack.cpp
+======================================================================
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -540,8 +572,10 @@ bool byRatio(Item x, Item y) {
 
 int main() {
     int n; double capacity;
+    cout << "Enter number of items and knapsack capacity: ";
     cin >> n >> capacity;
     vector<Item> a(n);
+    cout << "Enter weight and profit for each item (one pair per line):\n";
     for (int i = 0; i < n; i++) {
         Item &x = a[i];
         cin >> x.weight >> x.profit;
@@ -560,9 +594,9 @@ int main() {
 }
 
 
-
-===== 14_dijkstra.cpp =====
-
+======================================================================
+14_dijkstra.cpp
+======================================================================
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -571,10 +605,12 @@ using namespace std;
 
 int main() {
     int n, m, directed, source;
+    cout << "Enter vertices, edges, directed (1=yes, 0=no): ";
     cin >> n >> m >> directed;
     const long long INF = LLONG_MAX / 4;
     vector<vector<long long> > graph(n + 1, vector<long long>(n + 1, INF));
     for (int i = 1; i <= n; i++) graph[i][i] = 0;
+    cout << "Enter each edge as: from to weight (vertices 1 to " << n << "):\n";
     for (int i = 0; i < m; i++) {
         int u, v; long long w;
         cin >> u >> v >> w;
@@ -582,6 +618,7 @@ int main() {
         graph[u][v] = min(graph[u][v], w);
         if (!directed) graph[v][u] = min(graph[v][u], w);
     }
+    cout << "Enter source vertex (1 to " << n << "): ";
     cin >> source;
     vector<long long> dist(n + 1, INF);
     vector<bool> used(n + 1, false);
@@ -604,9 +641,9 @@ int main() {
 }
 
 
-
-===== 15_kruskal.cpp =====
-
+======================================================================
+15_kruskal.cpp
+======================================================================
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -624,8 +661,10 @@ int findRoot(int x, vector<int>& parent) {
 
 int main() {
     int n, m;
+    cout << "Enter number of vertices and edges: ";
     cin >> n >> m;
     vector<Edge> edges(m);
+    cout << "Enter each edge as: u v weight (vertices 1 to " << n << "):\n";
     for (int i = 0; i < m; i++) cin >> edges[i].u >> edges[i].v >> edges[i].weight;
     sort(edges.begin(), edges.end(), byWeight);
     vector<int> parent(n + 1);
@@ -646,9 +685,9 @@ int main() {
 }
 
 
-
-===== 16_prims.cpp =====
-
+======================================================================
+16_prims.cpp
+======================================================================
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -657,9 +696,11 @@ using namespace std;
 
 int main() {
     int n, m;
+    cout << "Enter number of vertices and edges: ";
     cin >> n >> m;
     const int INF = INT_MAX;
     vector<vector<int> > graph(n + 1, vector<int>(n + 1, INF));
+    cout << "Enter each edge as: u v weight (vertices 1 to " << n << "):\n";
     for (int i = 0; i < m; i++) {
         int u, v, w; cin >> u >> v >> w;
         graph[u][v] = min(graph[u][v], w);
@@ -687,9 +728,9 @@ int main() {
 }
 
 
-
-===== 17_huffman.cpp =====
-
+======================================================================
+17_huffman.cpp
+======================================================================
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -716,8 +757,10 @@ void printCodes(Node* root, string code) {
 }
 
 int main() {
+    cout << "Enter number of characters: ";
     int n; cin >> n;
     priority_queue<Node*, vector<Node*>, Compare> pq;
+    cout << "Enter each character and its frequency (e.g. a 5):\n";
     for (int i = 0; i < n; i++) {
         char ch; int freq;
         cin >> ch >> freq;
@@ -733,9 +776,9 @@ int main() {
 }
 
 
-
-===== 18_floyd_warshall.cpp =====
-
+======================================================================
+18_floyd_warshall.cpp
+======================================================================
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -743,9 +786,11 @@ int main() {
 using namespace std;
 
 int main() {
+    cout << "Enter number of vertices: ";
     int n; cin >> n;
     const long long INF = LLONG_MAX / 4;
     vector<vector<long long> > d(n, vector<long long>(n));
+    cout << "Enter adjacency matrix (0 diagonal, -1 for no edge):\n";
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++) {
             long long x; cin >> x;
@@ -770,9 +815,9 @@ int main() {
 }
 
 
-
-===== 19_zero_one_knapsack.cpp =====
-
+======================================================================
+19_zero_one_knapsack.cpp
+======================================================================
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -780,8 +825,10 @@ using namespace std;
 
 int main() {
     int n, capacity;
+    cout << "Enter number of items and knapsack capacity: ";
     cin >> n >> capacity;
     vector<int> weight(n + 1), profit(n + 1);
+    cout << "Enter each item as: weight profit (one pair per line):\n";
     for (int i = 1; i <= n; i++) cin >> weight[i] >> profit[i];
     vector<vector<int> > dp(n + 1, vector<int>(capacity + 1, 0));
     for (int i = 1; i <= n; i++)
@@ -794,9 +841,9 @@ int main() {
 }
 
 
-
-===== 20_matrix_chain_multiplication.cpp =====
-
+======================================================================
+20_matrix_chain_multiplication.cpp
+======================================================================
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -804,9 +851,11 @@ int main() {
 using namespace std;
 
 int main() {
+    cout << "Enter number of matrices: ";
     int n; cin >> n;
     if (n < 1) return 0;
     vector<long long> p(n + 1);
+    cout << "Enter " << n + 1 << " matrix dimensions (e.g. 10 20 30 for two matrices): ";
     for (int i = 0; i <= n; i++) cin >> p[i];
     const long long INF = LLONG_MAX / 4;
     vector<vector<long long> > dp(n + 1, vector<long long>(n + 1, 0));
@@ -821,9 +870,9 @@ int main() {
 }
 
 
-
-===== 21_n_queens.cpp =====
-
+======================================================================
+21_n_queens.cpp
+======================================================================
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -853,6 +902,7 @@ void solve(int row) {
 }
 
 int main() {
+    cout << "Enter board size / number of queens (1 to 12): ";
     cin >> n;
     if (n < 1 || n > 12) return cout << "Invalid n\n", 0;
     queen.resize(n);

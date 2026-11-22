@@ -27,6 +27,7 @@ void solve(int row) {
 }
 
 int main() {
+    cout << "Enter board size / number of queens (1 to 12): ";
     cin >> n;
     if (n < 1 || n > 12) return cout << "Invalid n\n", 0;
     queen.resize(n);
