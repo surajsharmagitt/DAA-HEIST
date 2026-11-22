@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
 int partitionArray(vector<int>& a, int left, int right) {
@@ -19,8 +21,8 @@ void quickSort(vector<int>& a, int left, int right) {
 int main() {
     int n; cin >> n;
     vector<int> a(n);
-    for (int &x : a) cin >> x;
+    for (int i = 0; i < n; i++) cin >> a[i];
     if (n) quickSort(a, 0, n - 1);
-    for (int x : a) cout << x << ' ';
+    for (int i = 0; i < n; i++) cout << a[i] << ' ';
     cout << '\n';
 }

@@ -1,27 +1,30 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <utility>
 using namespace std;
 
 pair<int, int> findMinMax(vector<int>& a, int left, int right, int& comparisons) {
-    if (left == right) return {a[left], a[left]};
+    if (left == right) return make_pair(a[left], a[left]);
     if (left + 1 == right) {
         comparisons++;
-        return {min(a[left], a[right]), max(a[left], a[right])};
+        return make_pair(min(a[left], a[right]), max(a[left], a[right]));
     }
     int mid = (left + right) / 2;
-    auto x = findMinMax(a, left, mid, comparisons);
-    auto y = findMinMax(a, mid + 1, right, comparisons);
+    pair<int, int> x = findMinMax(a, left, mid, comparisons);
+    pair<int, int> y = findMinMax(a, mid + 1, right, comparisons);
     comparisons += 2;
-    return {min(x.first, y.first), max(x.second, y.second)};
+    return make_pair(min(x.first, y.first), max(x.second, y.second));
 }
 
 int main() {
     int n; cin >> n;
     if (n <= 0) return 0;
     vector<int> a(n);
-    for (int &x : a) cin >> x;
+    for (int i = 0; i < n; i++) cin >> a[i];
 
     int comparisons = 0;
-    auto ans = findMinMax(a, 0, n - 1, comparisons);
+    pair<int, int> ans = findMinMax(a, 0, n - 1, comparisons);
     cout << "Minimum: " << ans.first << " Maximum: " << ans.second << '\n';
     cout << "D&C comparisons: " << comparisons << '\n';
     cout << "Traditional comparisons: " << 2 * (n - 1) << '\n';

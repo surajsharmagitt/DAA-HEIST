@@ -1,11 +1,14 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
 using namespace std;
 
 int main() {
     int n, m;
     cin >> n >> m;
     const int INF = INT_MAX;
-    vector<vector<int>> graph(n + 1, vector<int>(n + 1, INF));
+    vector<vector<int> > graph(n + 1, vector<int>(n + 1, INF));
     for (int i = 0; i < m; i++) {
         int u, v, w; cin >> u >> v >> w;
         graph[u][v] = min(graph[u][v], w);

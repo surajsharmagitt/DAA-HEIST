@@ -1,11 +1,14 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
 using namespace std;
 
 int main() {
     int n, m, directed, source;
     cin >> n >> m >> directed;
     const long long INF = LLONG_MAX / 4;
-    vector<vector<long long>> graph(n + 1, vector<long long>(n + 1, INF));
+    vector<vector<long long> > graph(n + 1, vector<long long>(n + 1, INF));
     for (int i = 1; i <= n; i++) graph[i][i] = 0;
     for (int i = 0; i < m; i++) {
         int u, v; long long w;

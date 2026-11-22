@@ -1,10 +1,11 @@
 # DAA Lab – All 21 Questions in C++ (24 Programs)
 
-Complete C++ implementations for all 21 DAA laboratory questions (24 programs total).
+Complete, universally compatible C++ implementations for all 21 DAA laboratory questions (24 programs total).
 
-- **Header:** `#include <bits/stdc++.h>` and `using namespace std;` across all programs.
+- **Standard Headers:** Uses standard C++ headers (`<iostream>`, `<vector>`, `<algorithm>`, etc.) — no GCC-only `<bits/stdc++.h>` dependency.
+- **Universal Compatibility:** Compiles cleanly with `g++ -std=c++98`, `c++11`, `c++14`, `c++17`, `c++20`, Dev-C++, older college lab GCC, and Apple Clang.
 - **Zero comments:** Clean, minimal, exam-ready code.
-- **Compile:** `g++ -std=c++17 <filename>.cpp -o program`
+- **Single file bundle:** [`ALL_24_CODES.txt`](file:///Users/surajsharma/Downloads/DAA%20heist/ALL_24_CODES.txt) contains all 24 programs in one text file.
 
 ---
 
@@ -20,13 +21,13 @@ Complete C++ implementations for all 21 DAA laboratory questions (24 programs to
 | **4** | [`04_queue_linked_list.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/04_queue_linked_list.cpp) | Queue using Linked List | Menu: `1 val` (Enqueue), `2` (Dequeue), `3` (Front), `4` (Display), `5` (Exit) |
 | **5a** | [`05a_linear_probing.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/05a_linear_probing.cpp) | Hash Table (Linear Probing) | Table size, key count, keys |
 | **5b** | [`05b_quadratic_probing.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/05b_quadratic_probing.cpp) | Hash Table (Quadratic Probing) | Table size, key count, keys |
-| **6** | [`06_two_sum.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/06_two_sum.cpp) | Two Sum Target $T$ ($O(n)$ Hash Set) | `n`, array, target $T$ |
+| **6** | [`06_two_sum.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/06_two_sum.cpp) | Two Sum Target $T$ (Hash Table) | `n`, array, target $T$ |
 | **7** | [`07_frequency_hashing.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/07_frequency_hashing.cpp) | Frequency via Hashing | `n`, array |
 | **8** | [`08_merge_sort.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/08_merge_sort.cpp) | Merge Sort (Divide & Conquer) | `n`, array |
 | **9** | [`09_quick_sort.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/09_quick_sort.cpp) | Quick Sort (In-place Partitioning) | `n`, array |
-| **10** | [`10_max_min_divide_conquer.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/10_max_min_divide_conquer.cpp) | Min/Max using Divide and Conquer | `n`, array (outputs min, max, D&C comparisons vs traditional) |
-| **11** | [`11_maximum_subarray.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/11_maximum_subarray.cpp) | Maximum Subarray via D&C | `n`, array (outputs max sum and elements) |
-| **12** | [`12_strassen_matrix.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/12_strassen_matrix.cpp) | Strassen 2x2 vs Normal Multiplication | Eight integers: A rowwise, B rowwise |
+| **10** | [`10_max_min_divide_conquer.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/10_max_min_divide_conquer.cpp) | Min/Max using Divide and Conquer | `n`, array (outputs min, max, D&C vs traditional comparisons) |
+| **11** | [`11_maximum_subarray.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/11_maximum_subarray.cpp) | Maximum Subarray via D&C | `n`, array (outputs maximum sum and elements) |
+| **12** | [`12_strassen_matrix.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/12_strassen_matrix.cpp) | Strassen 2×2 vs Normal Multiplication | Eight integers: A rowwise, B rowwise |
 | **13** | [`13_fractional_knapsack.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/13_fractional_knapsack.cpp) | Fractional Knapsack (Greedy) | `n`, capacity, then `n` pairs: `weight profit` |
 | **14** | [`14_dijkstra.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/14_dijkstra.cpp) | Dijkstra Single Source Shortest Path | `n`, `m`, directed (`1`=yes, `0`=no), `m` triples `u v w`, source |
 | **15** | [`15_kruskal.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/15_kruskal.cpp) | Kruskal's MST (DSU) | `n`, `m`, then `m` triples `u v w` |
@@ -35,4 +36,4 @@ Complete C++ implementations for all 21 DAA laboratory questions (24 programs to
 | **18** | [`18_floyd_warshall.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/18_floyd_warshall.cpp) | Floyd-Warshall All-Pairs Shortest Path | `n`, then $n \times n$ adjacency matrix (`-1` for missing edge) |
 | **19** | [`19_zero_one_knapsack.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/19_zero_one_knapsack.cpp) | 0/1 Knapsack Problem (Dynamic Programming) | `n`, capacity, then `n` pairs: `weight profit` |
 | **20** | [`20_matrix_chain_multiplication.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/20_matrix_chain_multiplication.cpp) | Matrix Chain Multiplication (DP) | `n`, then `n+1` dimensions |
-| **21** | [`21_n_queens.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/21_n_queens.cpp) | N-Queens Backtracking | `n` (outputs all boards and total count) |
+| **21** | [`21_n_queens.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/21_n_queens.cpp) | $N$-Queens Backtracking | `n` (outputs all boards and total count) |

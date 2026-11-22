@@ -1,20 +1,27 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
+
+int hashKey(long long x, int m) { return (int)((x % m + m) % m); }
 
 int main() {
     int n, target;
     cin >> n;
     vector<int> a(n);
-    for (int &x : a) cin >> x;
+    for (int i = 0; i < n; i++) cin >> a[i];
     cin >> target;
-
-    unordered_set<int> seen;
-    for (int x : a) {
-        if (seen.count(target - x)) {
-            cout << target - x << " + " << x << " = " << target << '\n';
-            return 0;
+    int m = 2 * n + 1;
+    vector<vector<int> > table(m);
+    for (int i = 0; i < n; i++) {
+        long long need = (long long)target - a[i];
+        vector<int> &bucket = table[hashKey(need, m)];
+        for (int j = 0; j < (int)bucket.size(); j++) {
+            if (bucket[j] == need) {
+                cout << need << " + " << a[i] << " = " << target << '\n';
+                return 0;
+            }
         }
-        seen.insert(x);
+        table[hashKey(a[i], m)].push_back(a[i]);
     }
     cout << "No pair found\n";
 }

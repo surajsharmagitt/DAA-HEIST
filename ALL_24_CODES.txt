@@ -1,0 +1,863 @@
+===== 01a_kth_brute.cpp =====
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int n, k;
+    cin >> n;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
+    cin >> k;
+    if (k < 1 || k > n) return cout << "Invalid k\n", 0;
+
+    for (int i = 0; i < n; i++) {
+        int pos = i;
+        for (int j = i + 1; j < n; j++)
+            if (a[j] < a[pos]) pos = j;
+        swap(a[i], a[pos]);
+    }
+    cout << "Kth smallest: " << a[k - 1] << '\n';
+}
+
+
+
+===== 01b_kth_quickselect.cpp =====
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+int partitionArray(vector<int>& a, int left, int right) {
+    int pivot = a[right], pos = left;
+    for (int i = left; i < right; i++)
+        if (a[i] <= pivot) swap(a[i], a[pos++]);
+    swap(a[pos], a[right]);
+    return pos;
+}
+
+int main() {
+    int n, k;
+    cin >> n;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
+    cin >> k;
+    if (k < 1 || k > n) return cout << "Invalid k\n", 0;
+
+    srand(time(0));
+    int left = 0, right = n - 1;
+    while (left <= right) {
+        swap(a[right], a[left + rand() % (right - left + 1)]);
+        int pos = partitionArray(a, left, right);
+        if (pos == k - 1) {
+            cout << "Kth smallest: " << a[pos] << '\n';
+            break;
+        }
+        if (pos < k - 1) left = pos + 1;
+        else right = pos - 1;
+    }
+}
+
+
+
+===== 02a_hanoi_recursive.cpp =====
+
+#include <iostream>
+using namespace std;
+
+void hanoi(int n, char from, char help, char to) {
+    if (n == 0) return;
+    hanoi(n - 1, from, to, help);
+    cout << "Move disk " << n << " from " << from << " to " << to << '\n';
+    hanoi(n - 1, help, from, to);
+}
+
+int main() {
+    int n;
+    cin >> n;
+    if (n < 1 || n > 20) return cout << "Invalid n\n", 0;
+    hanoi(n, 'A', 'B', 'C');
+}
+
+
+
+===== 02b_hanoi_iterative.cpp =====
+
+#include <iostream>
+#include <stack>
+using namespace std;
+
+void moveDisk(stack<int>& a, stack<int>& b, char x, char y) {
+    if (a.empty() || (!b.empty() && b.top() < a.top())) {
+        int disk = b.top(); b.pop(); a.push(disk);
+        cout << "Move disk " << disk << " from " << y << " to " << x << '\n';
+    } else {
+        int disk = a.top(); a.pop(); b.push(disk);
+        cout << "Move disk " << disk << " from " << x << " to " << y << '\n';
+    }
+}
+
+int main() {
+    int n;
+    cin >> n;
+    if (n < 1 || n > 20) return cout << "Invalid n\n", 0;
+    stack<int> a, b, c;
+    for (int i = n; i >= 1; i--) a.push(i);
+    int moves = (1 << n) - 1;
+    for (int i = 1; i <= moves; i++) {
+        if (i % 3 == 1) {
+            if (n % 2) moveDisk(a, c, 'A', 'C');
+            else moveDisk(a, b, 'A', 'B');
+        } else if (i % 3 == 2) {
+            if (n % 2) moveDisk(a, b, 'A', 'B');
+            else moveDisk(a, c, 'A', 'C');
+        } else moveDisk(b, c, 'B', 'C');
+    }
+}
+
+
+
+===== 03_stack_linked_list.cpp =====
+
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int data; Node* next;
+    Node(int x, Node* p) : data(x), next(p) {}
+};
+Node* topNode = 0;
+
+void push(int x) { topNode = new Node(x, topNode); }
+
+void pop() {
+    if (!topNode) { cout << "Empty\n"; return; }
+    Node* temp = topNode;
+    cout << "Popped: " << temp->data << '\n';
+    topNode = topNode->next;
+    delete temp;
+}
+
+void display() {
+    for (Node* p = topNode; p; p = p->next) cout << p->data << ' ';
+    cout << '\n';
+}
+
+int main() {
+    int choice, x;
+    while (cin >> choice && choice != 5) {
+        if (choice == 1) { cin >> x; push(x); }
+        else if (choice == 2) pop();
+        else if (choice == 3) {
+            if (topNode) cout << "Top: " << topNode->data << '\n';
+            else cout << "Empty\n";
+        } else if (choice == 4) display();
+    }
+    while (topNode) { Node* p = topNode; topNode = p->next; delete p; }
+}
+
+
+
+===== 04_queue_linked_list.cpp =====
+
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int data; Node* next;
+    Node(int x, Node* p) : data(x), next(p) {}
+};
+Node *frontNode = 0, *rearNode = 0;
+
+void enqueue(int x) {
+    Node* p = new Node(x, 0);
+    if (rearNode) rearNode->next = p;
+    else frontNode = p;
+    rearNode = p;
+}
+
+void dequeue() {
+    if (!frontNode) { cout << "Empty\n"; return; }
+    Node* temp = frontNode;
+    cout << "Deleted: " << temp->data << '\n';
+    frontNode = frontNode->next;
+    if (!frontNode) rearNode = 0;
+    delete temp;
+}
+
+void display() {
+    for (Node* p = frontNode; p; p = p->next) cout << p->data << ' ';
+    cout << '\n';
+}
+
+int main() {
+    int choice, x;
+    while (cin >> choice && choice != 5) {
+        if (choice == 1) { cin >> x; enqueue(x); }
+        else if (choice == 2) dequeue();
+        else if (choice == 3) {
+            if (frontNode) cout << "Front: " << frontNode->data << '\n';
+            else cout << "Empty\n";
+        } else if (choice == 4) display();
+    }
+    while (frontNode) { Node* p = frontNode; frontNode = p->next; delete p; }
+}
+
+
+
+===== 05a_linear_probing.cpp =====
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int size, n;
+    cin >> size >> n;
+    if (size <= 0) return 0;
+    vector<int> table(size);
+    vector<bool> used(size, false);
+    for (int j = 0; j < n; j++) {
+        int key; cin >> key;
+        int hash = (key % size + size) % size;
+        bool inserted = false;
+        for (int i = 0; i < size; i++) {
+            int pos = (hash + i) % size;
+            if (!used[pos]) {
+                table[pos] = key;
+                used[pos] = inserted = true;
+                break;
+            }
+        }
+        if (!inserted) cout << "Table full for " << key << '\n';
+    }
+    for (int i = 0; i < size; i++) {
+        cout << i << ": ";
+        if (used[i]) cout << table[i];
+        else cout << "Empty";
+        cout << '\n';
+    }
+}
+
+
+
+===== 05b_quadratic_probing.cpp =====
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int size, n;
+    cin >> size >> n;
+    if (size <= 0) return 0;
+    vector<int> table(size);
+    vector<bool> used(size, false);
+    for (int j = 0; j < n; j++) {
+        int key; cin >> key;
+        int hash = (key % size + size) % size;
+        bool inserted = false;
+        for (int i = 0; i < size; i++) {
+            int pos = (hash + 1LL * i * i) % size;
+            if (!used[pos]) {
+                table[pos] = key;
+                used[pos] = inserted = true;
+                break;
+            }
+        }
+        if (!inserted) cout << "No quadratic slot for " << key << '\n';
+    }
+    for (int i = 0; i < size; i++) {
+        cout << i << ": ";
+        if (used[i]) cout << table[i];
+        else cout << "Empty";
+        cout << '\n';
+    }
+}
+
+
+
+===== 06_two_sum.cpp =====
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int hashKey(long long x, int m) { return (int)((x % m + m) % m); }
+
+int main() {
+    int n, target;
+    cin >> n;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
+    cin >> target;
+    int m = 2 * n + 1;
+    vector<vector<int> > table(m);
+    for (int i = 0; i < n; i++) {
+        long long need = (long long)target - a[i];
+        vector<int> &bucket = table[hashKey(need, m)];
+        for (int j = 0; j < (int)bucket.size(); j++) {
+            if (bucket[j] == need) {
+                cout << need << " + " << a[i] << " = " << target << '\n';
+                return 0;
+            }
+        }
+        table[hashKey(a[i], m)].push_back(a[i]);
+    }
+    cout << "No pair found\n";
+}
+
+
+
+===== 07_frequency_hashing.cpp =====
+
+#include <iostream>
+#include <vector>
+#include <utility>
+using namespace std;
+
+int hashKey(int x, int m) { return (int)(((long long)x % m + m) % m); }
+
+int main() {
+    int n;
+    cin >> n;
+    int m = 2 * n + 1;
+    vector<vector<pair<int, int> > > table(m);
+    vector<int> order;
+    for (int i = 0; i < n; i++) {
+        int x; cin >> x;
+        vector<pair<int, int> > &bucket = table[hashKey(x, m)];
+        bool found = false;
+        for (int j = 0; j < (int)bucket.size(); j++) {
+            if (bucket[j].first == x) { bucket[j].second++; found = true; break; }
+        }
+        if (!found) { bucket.push_back(make_pair(x, 1)); order.push_back(x); }
+    }
+    for (int i = 0; i < (int)order.size(); i++) {
+        int x = order[i];
+        vector<pair<int, int> > &bucket = table[hashKey(x, m)];
+        for (int j = 0; j < (int)bucket.size(); j++)
+            if (bucket[j].first == x) cout << x << ": " << bucket[j].second << '\n';
+    }
+}
+
+
+
+===== 08_merge_sort.cpp =====
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void mergeSort(vector<int>& a, int left, int right) {
+    if (left >= right) return;
+    int mid = (left + right) / 2;
+    mergeSort(a, left, mid);
+    mergeSort(a, mid + 1, right);
+
+    vector<int> temp;
+    int i = left, j = mid + 1;
+    while (i <= mid && j <= right) {
+        if (a[i] <= a[j]) temp.push_back(a[i++]);
+        else temp.push_back(a[j++]);
+    }
+    while (i <= mid) temp.push_back(a[i++]);
+    while (j <= right) temp.push_back(a[j++]);
+    for (int k = 0; k < (int)temp.size(); k++) a[left + k] = temp[k];
+}
+
+int main() {
+    int n; cin >> n;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
+    if (n) mergeSort(a, 0, n - 1);
+    for (int i = 0; i < n; i++) cout << a[i] << ' ';
+    cout << '\n';
+}
+
+
+
+===== 09_quick_sort.cpp =====
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int partitionArray(vector<int>& a, int left, int right) {
+    int pivot = a[right], pos = left;
+    for (int i = left; i < right; i++)
+        if (a[i] <= pivot) swap(a[i], a[pos++]);
+    swap(a[pos], a[right]);
+    return pos;
+}
+
+void quickSort(vector<int>& a, int left, int right) {
+    if (left >= right) return;
+    int pos = partitionArray(a, left, right);
+    quickSort(a, left, pos - 1);
+    quickSort(a, pos + 1, right);
+}
+
+int main() {
+    int n; cin >> n;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
+    if (n) quickSort(a, 0, n - 1);
+    for (int i = 0; i < n; i++) cout << a[i] << ' ';
+    cout << '\n';
+}
+
+
+
+===== 10_max_min_divide_conquer.cpp =====
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <utility>
+using namespace std;
+
+pair<int, int> findMinMax(vector<int>& a, int left, int right, int& comparisons) {
+    if (left == right) return make_pair(a[left], a[left]);
+    if (left + 1 == right) {
+        comparisons++;
+        return make_pair(min(a[left], a[right]), max(a[left], a[right]));
+    }
+    int mid = (left + right) / 2;
+    pair<int, int> x = findMinMax(a, left, mid, comparisons);
+    pair<int, int> y = findMinMax(a, mid + 1, right, comparisons);
+    comparisons += 2;
+    return make_pair(min(x.first, y.first), max(x.second, y.second));
+}
+
+int main() {
+    int n; cin >> n;
+    if (n <= 0) return 0;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
+
+    int comparisons = 0;
+    pair<int, int> ans = findMinMax(a, 0, n - 1, comparisons);
+    cout << "Minimum: " << ans.first << " Maximum: " << ans.second << '\n';
+    cout << "D&C comparisons: " << comparisons << '\n';
+    cout << "Traditional comparisons: " << 2 * (n - 1) << '\n';
+}
+
+
+
+===== 11_maximum_subarray.cpp =====
+
+#include <iostream>
+#include <vector>
+#include <climits>
+using namespace std;
+
+struct Answer { long long sum; int left, right; };
+
+Answer maxSubarray(vector<int>& a, int left, int right) {
+    if (left == right) { Answer ans = {a[left], left, right}; return ans; }
+    int mid = (left + right) / 2;
+    Answer x = maxSubarray(a, left, mid);
+    Answer y = maxSubarray(a, mid + 1, right);
+
+    long long sum = 0, bestLeft = LLONG_MIN, bestRight = LLONG_MIN;
+    int start = mid, end = mid + 1;
+    for (int i = mid; i >= left; i--) {
+        sum += a[i];
+        if (sum > bestLeft) { bestLeft = sum; start = i; }
+    }
+    sum = 0;
+    for (int i = mid + 1; i <= right; i++) {
+        sum += a[i];
+        if (sum > bestRight) { bestRight = sum; end = i; }
+    }
+    Answer cross = {bestLeft + bestRight, start, end};
+    if (x.sum >= y.sum && x.sum >= cross.sum) return x;
+    if (y.sum >= cross.sum) return y;
+    return cross;
+}
+
+int main() {
+    int n; cin >> n;
+    if (n <= 0) return 0;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
+    Answer ans = maxSubarray(a, 0, n - 1);
+    cout << "Maximum sum: " << ans.sum << '\n';
+    for (int i = ans.left; i <= ans.right; i++) cout << a[i] << ' ';
+    cout << '\n';
+}
+
+
+
+===== 12_strassen_matrix.cpp =====
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    long long a, b, c, d, e, f, g, h;
+    cin >> a >> b >> c >> d;
+    cin >> e >> f >> g >> h;
+
+    long long p1 = (a + d) * (e + h);
+    long long p2 = (c + d) * e;
+    long long p3 = a * (f - h);
+    long long p4 = d * (g - e);
+    long long p5 = (a + b) * h;
+    long long p6 = (c - a) * (e + f);
+    long long p7 = (b - d) * (g + h);
+
+    cout << "Strassen:\n";
+    cout << p1 + p4 - p5 + p7 << ' ' << p3 + p5 << '\n';
+    cout << p2 + p4 << ' ' << p1 - p2 + p3 + p6 << '\n';
+    cout << "Normal:\n";
+    cout << a*e + b*g << ' ' << a*f + b*h << '\n';
+    cout << c*e + d*g << ' ' << c*f + d*h << '\n';
+}
+
+
+
+===== 13_fractional_knapsack.cpp =====
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iomanip>
+using namespace std;
+
+struct Item { double weight, profit; };
+
+bool byRatio(Item x, Item y) {
+    return x.profit / x.weight > y.profit / y.weight;
+}
+
+int main() {
+    int n; double capacity;
+    cin >> n >> capacity;
+    vector<Item> a(n);
+    for (int i = 0; i < n; i++) {
+        Item &x = a[i];
+        cin >> x.weight >> x.profit;
+        if (x.weight <= 0) return cout << "Invalid weight\n", 0;
+    }
+    sort(a.begin(), a.end(), byRatio);
+    double total = 0;
+    for (int i = 0; i < n; i++) {
+        Item x = a[i];
+        double take = min(capacity, x.weight);
+        total += take * x.profit / x.weight;
+        capacity -= take;
+        if (capacity <= 0) break;
+    }
+    cout << fixed << setprecision(2) << "Maximum profit: " << total << '\n';
+}
+
+
+
+===== 14_dijkstra.cpp =====
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
+using namespace std;
+
+int main() {
+    int n, m, directed, source;
+    cin >> n >> m >> directed;
+    const long long INF = LLONG_MAX / 4;
+    vector<vector<long long> > graph(n + 1, vector<long long>(n + 1, INF));
+    for (int i = 1; i <= n; i++) graph[i][i] = 0;
+    for (int i = 0; i < m; i++) {
+        int u, v; long long w;
+        cin >> u >> v >> w;
+        if (w < 0) return cout << "Negative weight\n", 0;
+        graph[u][v] = min(graph[u][v], w);
+        if (!directed) graph[v][u] = min(graph[v][u], w);
+    }
+    cin >> source;
+    vector<long long> dist(n + 1, INF);
+    vector<bool> used(n + 1, false);
+    dist[source] = 0;
+    for (int i = 1; i <= n; i++) {
+        int u = -1;
+        for (int j = 1; j <= n; j++)
+            if (!used[j] && (u == -1 || dist[j] < dist[u])) u = j;
+        if (u == -1 || dist[u] == INF) break;
+        used[u] = true;
+        for (int v = 1; v <= n; v++)
+            if (graph[u][v] != INF)
+                dist[v] = min(dist[v], dist[u] + graph[u][v]);
+    }
+    for (int i = 1; i <= n; i++) {
+        cout << i << ": ";
+        if (dist[i] == INF) cout << "INF\n";
+        else cout << dist[i] << '\n';
+    }
+}
+
+
+
+===== 15_kruskal.cpp =====
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <numeric>
+using namespace std;
+
+struct Edge { int u, v, weight; };
+
+bool byWeight(Edge a, Edge b) { return a.weight < b.weight; }
+
+int findRoot(int x, vector<int>& parent) {
+    if (parent[x] == x) return x;
+    return parent[x] = findRoot(parent[x], parent);
+}
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+    vector<Edge> edges(m);
+    for (int i = 0; i < m; i++) cin >> edges[i].u >> edges[i].v >> edges[i].weight;
+    sort(edges.begin(), edges.end(), byWeight);
+    vector<int> parent(n + 1);
+    for (int i = 0; i <= n; i++) parent[i] = i;
+    long long total = 0;
+    int count = 0;
+    for (int i = 0; i < m; i++) {
+        Edge e = edges[i];
+        int u = findRoot(e.u, parent), v = findRoot(e.v, parent);
+        if (u == v) continue;
+        parent[u] = v;
+        cout << e.u << " - " << e.v << " : " << e.weight << '\n';
+        total += e.weight;
+        if (++count == n - 1) break;
+    }
+    if (count == n - 1) cout << "MST cost: " << total << '\n';
+    else cout << "No spanning tree\n";
+}
+
+
+
+===== 16_prims.cpp =====
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
+using namespace std;
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+    const int INF = INT_MAX;
+    vector<vector<int> > graph(n + 1, vector<int>(n + 1, INF));
+    for (int i = 0; i < m; i++) {
+        int u, v, w; cin >> u >> v >> w;
+        graph[u][v] = min(graph[u][v], w);
+        graph[v][u] = min(graph[v][u], w);
+    }
+    vector<int> cost(n + 1, INF), parent(n + 1, 0);
+    vector<bool> used(n + 1, false);
+    cost[1] = 0;
+    long long total = 0;
+    for (int i = 1; i <= n; i++) {
+        int u = -1;
+        for (int j = 1; j <= n; j++)
+            if (!used[j] && (u == -1 || cost[j] < cost[u])) u = j;
+        if (u == -1 || cost[u] == INF) return cout << "No spanning tree\n", 0;
+        used[u] = true;
+        total += cost[u];
+        if (parent[u]) cout << parent[u] << " - " << u << " : " << cost[u] << '\n';
+        for (int v = 1; v <= n; v++)
+            if (!used[v] && graph[u][v] < cost[v]) {
+                cost[v] = graph[u][v];
+                parent[v] = u;
+            }
+    }
+    cout << "MST cost: " << total << '\n';
+}
+
+
+
+===== 17_huffman.cpp =====
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <string>
+using namespace std;
+
+struct Node {
+    char ch;
+    int freq;
+    Node *left, *right;
+    Node(char c, int f, Node* a = 0, Node* b = 0) : ch(c), freq(f), left(a), right(b) {}
+};
+struct Compare {
+    bool operator()(Node* a, Node* b) { return a->freq > b->freq; }
+};
+
+void printCodes(Node* root, string code) {
+    if (!root->left && !root->right) {
+        cout << root->ch << ": " << (code.empty() ? "0" : code) << '\n';
+        return;
+    }
+    printCodes(root->left, code + '0');
+    printCodes(root->right, code + '1');
+}
+
+int main() {
+    int n; cin >> n;
+    priority_queue<Node*, vector<Node*>, Compare> pq;
+    for (int i = 0; i < n; i++) {
+        char ch; int freq;
+        cin >> ch >> freq;
+        pq.push(new Node(ch, freq, 0, 0));
+    }
+    if (pq.empty()) return 0;
+    while (pq.size() > 1) {
+        Node* a = pq.top(); pq.pop();
+        Node* b = pq.top(); pq.pop();
+        pq.push(new Node('\0', a->freq + b->freq, a, b));
+    }
+    printCodes(pq.top(), "");
+}
+
+
+
+===== 18_floyd_warshall.cpp =====
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
+using namespace std;
+
+int main() {
+    int n; cin >> n;
+    const long long INF = LLONG_MAX / 4;
+    vector<vector<long long> > d(n, vector<long long>(n));
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++) {
+            long long x; cin >> x;
+            d[i][j] = (i != j && x == -1) ? INF : x;
+        }
+
+    for (int k = 0; k < n; k++)
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                if (d[i][k] != INF && d[k][j] != INF)
+                    d[i][j] = min(d[i][j], d[i][k] + d[k][j]);
+
+    for (int i = 0; i < n; i++)
+        if (d[i][i] < 0) return cout << "Negative cycle\n", 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (d[i][j] == INF) cout << "INF ";
+            else cout << d[i][j] << ' ';
+        }
+        cout << '\n';
+    }
+}
+
+
+
+===== 19_zero_one_knapsack.cpp =====
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int n, capacity;
+    cin >> n >> capacity;
+    vector<int> weight(n + 1), profit(n + 1);
+    for (int i = 1; i <= n; i++) cin >> weight[i] >> profit[i];
+    vector<vector<int> > dp(n + 1, vector<int>(capacity + 1, 0));
+    for (int i = 1; i <= n; i++)
+        for (int w = 0; w <= capacity; w++) {
+            dp[i][w] = dp[i - 1][w];
+            if (weight[i] <= w)
+                dp[i][w] = max(dp[i][w], profit[i] + dp[i - 1][w - weight[i]]);
+        }
+    cout << "Maximum profit: " << dp[n][capacity] << '\n';
+}
+
+
+
+===== 20_matrix_chain_multiplication.cpp =====
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
+using namespace std;
+
+int main() {
+    int n; cin >> n;
+    if (n < 1) return 0;
+    vector<long long> p(n + 1);
+    for (int i = 0; i <= n; i++) cin >> p[i];
+    const long long INF = LLONG_MAX / 4;
+    vector<vector<long long> > dp(n + 1, vector<long long>(n + 1, 0));
+    for (int len = 2; len <= n; len++)
+        for (int i = 1; i + len - 1 <= n; i++) {
+            int j = i + len - 1;
+            dp[i][j] = INF;
+            for (int k = i; k < j; k++)
+                dp[i][j] = min(dp[i][j], dp[i][k] + dp[k + 1][j] + p[i - 1] * p[k] * p[j]);
+        }
+    cout << "Minimum multiplications: " << dp[1][n] << '\n';
+}
+
+
+
+===== 21_n_queens.cpp =====
+
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+using namespace std;
+
+int n, solutions = 0;
+vector<int> queen;
+
+void solve(int row) {
+    if (row == n) {
+        cout << "Solution " << ++solutions << ":\n";
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) cout << (queen[i] == j ? 'Q' : '.') << ' ';
+            cout << '\n';
+        }
+        return;
+    }
+    for (int col = 0; col < n; col++) {
+        bool safe = true;
+        for (int i = 0; i < row; i++)
+            if (queen[i] == col || abs(queen[i] - col) == row - i) safe = false;
+        if (safe) {
+            queen[row] = col;
+            solve(row + 1);
+        }
+    }
+}
+
+int main() {
+    cin >> n;
+    if (n < 1 || n > 12) return cout << "Invalid n\n", 0;
+    queen.resize(n);
+    solve(0);
+    cout << "Total solutions: " << solutions << '\n';
+}
+
+

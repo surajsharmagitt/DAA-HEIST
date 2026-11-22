@@ -1,11 +1,13 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
 int main() {
     int n, k;
     cin >> n;
     vector<int> a(n);
-    for (int &x : a) cin >> x;
+    for (int i = 0; i < n; i++) cin >> a[i];
     cin >> k;
     if (k < 1 || k > n) return cout << "Invalid k\n", 0;
 

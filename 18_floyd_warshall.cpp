@@ -1,10 +1,13 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
 using namespace std;
 
 int main() {
     int n; cin >> n;
     const long long INF = LLONG_MAX / 4;
-    vector<vector<long long>> d(n, vector<long long>(n));
+    vector<vector<long long> > d(n, vector<long long>(n));
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++) {
             long long x; cin >> x;

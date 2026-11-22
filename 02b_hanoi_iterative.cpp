@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <stack>
 using namespace std;
 
 void moveDisk(stack<int>& a, stack<int>& b, char x, char y) {

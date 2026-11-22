@@ -1,13 +1,16 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
 using namespace std;
 
 int main() {
     int n; cin >> n;
     if (n < 1) return 0;
     vector<long long> p(n + 1);
-    for (long long &x : p) cin >> x;
+    for (int i = 0; i <= n; i++) cin >> p[i];
     const long long INF = LLONG_MAX / 4;
-    vector<vector<long long>> dp(n + 1, vector<long long>(n + 1, 0));
+    vector<vector<long long> > dp(n + 1, vector<long long>(n + 1, 0));
     for (int len = 2; len <= n; len++)
         for (int i = 1; i + len - 1 <= n; i++) {
             int j = i + len - 1;

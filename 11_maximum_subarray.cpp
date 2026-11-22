@@ -1,10 +1,12 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <climits>
 using namespace std;
 
 struct Answer { long long sum; int left, right; };
 
 Answer maxSubarray(vector<int>& a, int left, int right) {
-    if (left == right) return {a[left], left, right};
+    if (left == right) { Answer ans = {a[left], left, right}; return ans; }
     int mid = (left + right) / 2;
     Answer x = maxSubarray(a, left, mid);
     Answer y = maxSubarray(a, mid + 1, right);
@@ -30,7 +32,7 @@ int main() {
     int n; cin >> n;
     if (n <= 0) return 0;
     vector<int> a(n);
-    for (int &x : a) cin >> x;
+    for (int i = 0; i < n; i++) cin >> a[i];
     Answer ans = maxSubarray(a, 0, n - 1);
     cout << "Maximum sum: " << ans.sum << '\n';
     for (int i = ans.left; i <= ans.right; i++) cout << a[i] << ' ';

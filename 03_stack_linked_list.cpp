@@ -1,10 +1,13 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
-struct Node { int data; Node* next; };
-Node* topNode = nullptr;
+struct Node {
+    int data; Node* next;
+    Node(int x, Node* p) : data(x), next(p) {}
+};
+Node* topNode = 0;
 
-void push(int x) { topNode = new Node{x, topNode}; }
+void push(int x) { topNode = new Node(x, topNode); }
 
 void pop() {
     if (!topNode) { cout << "Empty\n"; return; }

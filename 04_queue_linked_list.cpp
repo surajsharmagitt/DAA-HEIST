@@ -1,11 +1,14 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
-struct Node { int data; Node* next; };
-Node *frontNode = nullptr, *rearNode = nullptr;
+struct Node {
+    int data; Node* next;
+    Node(int x, Node* p) : data(x), next(p) {}
+};
+Node *frontNode = 0, *rearNode = 0;
 
 void enqueue(int x) {
-    Node* p = new Node{x, nullptr};
+    Node* p = new Node(x, 0);
     if (rearNode) rearNode->next = p;
     else frontNode = p;
     rearNode = p;
@@ -16,7 +19,7 @@ void dequeue() {
     Node* temp = frontNode;
     cout << "Deleted: " << temp->data << '\n';
     frontNode = frontNode->next;
-    if (!frontNode) rearNode = nullptr;
+    if (!frontNode) rearNode = 0;
     delete temp;
 }
 
