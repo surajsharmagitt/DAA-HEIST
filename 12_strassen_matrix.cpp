@@ -14,14 +14,10 @@ int main() {
     long long p6 = (c - a) * (e + f);
     long long p7 = (b - d) * (g + h);
 
-    long long c11 = p1 + p4 - p5 + p7;
-    long long c12 = p3 + p5;
-    long long c21 = p2 + p4;
-    long long c22 = p1 - p2 + p3 + p6;
-
     cout << "Strassen:\n";
-    cout << c11 << ' ' << c12 << '\n' << c21 << ' ' << c22 << '\n';
+    cout << p1 + p4 - p5 + p7 << ' ' << p3 + p5 << '\n';
+    cout << p2 + p4 << ' ' << p1 - p2 + p3 + p6 << '\n';
     cout << "Normal:\n";
-    cout << a * e + b * g << ' ' << a * f + b * h << '\n';
-    cout << c * e + d * g << ' ' << c * f + d * h << '\n';
+    cout << a*e + b*g << ' ' << a*f + b*h << '\n';
+    cout << c*e + d*g << ' ' << c*f + d*h << '\n';
 }

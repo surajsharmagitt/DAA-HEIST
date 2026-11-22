@@ -12,12 +12,12 @@ void enqueue(int x) {
 }
 
 void dequeue() {
-    if (!frontNode) { cout << "Underflow\n"; return; }
-    Node* p = frontNode;
-    cout << "Deleted: " << p->data << '\n';
+    if (!frontNode) { cout << "Empty\n"; return; }
+    Node* temp = frontNode;
+    cout << "Deleted: " << temp->data << '\n';
     frontNode = frontNode->next;
     if (!frontNode) rearNode = nullptr;
-    delete p;
+    delete temp;
 }
 
 void display() {
@@ -33,8 +33,7 @@ int main() {
         else if (choice == 3) {
             if (frontNode) cout << "Front: " << frontNode->data << '\n';
             else cout << "Empty\n";
-        }
-        else if (choice == 4) display();
+        } else if (choice == 4) display();
     }
     while (frontNode) { Node* p = frontNode; frontNode = p->next; delete p; }
 }

@@ -14,10 +14,9 @@ void moveDisk(stack<int>& a, stack<int>& b, char x, char y) {
 int main() {
     int n;
     cin >> n;
-    if (n < 1 || n > 20) return cout << "Enter n from 1 to 20\n", 0;
+    if (n < 1 || n > 20) return cout << "Invalid n\n", 0;
     stack<int> a, b, c;
     for (int i = n; i >= 1; i--) a.push(i);
-
     int moves = (1 << n) - 1;
     for (int i = 1; i <= moves; i++) {
         if (i % 3 == 1) {

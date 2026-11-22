@@ -1,40 +1,38 @@
 # DAA Lab – All 21 Questions in C++ (24 Programs)
 
-Complete C++ implementations for all 21 examination questions, following the syllabus requirements.
-- **Q01**: Two separate files (1a Brute Force / Selection Sort, 1b Quickselect)
-- **Q02**: Two separate files (2a Recursive Hanoi, 2b Non-Recursive Hanoi)
-- **Q05**: Two separate files (5a Linear Probing, 5b Quadratic Probing)
-- **Remaining 18 Questions (Q03, Q04, Q06–Q21)**: One clean standalone program each.
+Complete C++ implementations for all 21 DAA laboratory questions (24 programs total).
 
-Every program is standalone, minimal, uses `#include <bits/stdc++.h>`, takes user input, and contains no comments.
+- **Header:** `#include <bits/stdc++.h>` and `using namespace std;` across all programs.
+- **Zero comments:** Clean, minimal, exam-ready code.
+- **Compile:** `g++ -std=c++17 <filename>.cpp -o program`
 
 ---
 
-## 📋 Complete File Directory (24 Programs)
+## 📋 Complete Directory of Programs
 
-| Q# | File Name | Algorithm / Topic | Method / Complexity |
+| Q# | File Name | Algorithm / Topic | Input Format |
 |---|---|---|---|
-| **01(a)** | [`q01_a_kth_smallest_sorting.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q01_a_kth_smallest_sorting.cpp) | Kth Smallest | Brute Force (Selection Sort) — $O(n^2)$ |
-| **01(b)** | [`q01_b_kth_smallest_quickselect.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q01_b_kth_smallest_quickselect.cpp) | Kth Smallest | Quickselect (Randomized Pivot) — Average $O(n)$ |
-| **02(a)** | [`q02_a_tower_of_hanoi_recursive.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q02_a_tower_of_hanoi_recursive.cpp) | Towers of Hanoi | Recursive Method |
-| **02(b)** | [`q02_b_tower_of_hanoi_iterative.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q02_b_tower_of_hanoi_iterative.cpp) | Towers of Hanoi | Non-Recursive (Explicit Stacks Simulation) |
-| **03** | [`q03_stack_using_LL.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q03_stack_using_LL.cpp) | Stack using Linked List | Push, Pop, Peek, Display, Exit |
-| **04** | [`q04_Queue_using_LL.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q04_Queue_using_LL.cpp) | Queue using Linked List | Enqueue, Dequeue, Front, Display, Exit |
-| **05(a)** | [`q05_a_hash_table_linear_probing.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q05_a_hash_table_linear_probing.cpp) | Hash Table | Linear Probing: $(h(k) + i) \pmod m$ |
-| **05(b)** | [`q05_b_hash_table_quadratic_probing.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q05_b_hash_table_quadratic_probing.cpp) | Hash Table | Quadratic Probing: $(h(k) + i^2) \pmod m$ |
-| **06** | [`q06_two_sum.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q06_two_sum.cpp) | Two Sum Target $T$ | Hash Set (`unordered_set`) — Average $O(n)$ |
-| **07** | [`q07_freq_of_element.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q07_freq_of_element.cpp) | Element Frequency | Hashing (`unordered_map`) with Order Tracking |
-| **08** | [`q08_merge_sort.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q08_merge_sort.cpp) | Merge Sort | Divide & Conquer ($O(n \log n)$) |
-| **09** | [`q09_Quick_sort.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q09_Quick_sort.cpp) | Quick Sort | In-place Partitioning ($O(n \log n)$ avg, $O(n^2)$ worst) |
-| **10** | [`q10_max_min_element.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q10_max_min_element.cpp) | Max & Min Element | Divide & Conquer vs Traditional (Comparison Counting) |
-| **11** | [`q11_max_subarray.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q11_max_subarray.cpp) | Maximum Subarray Problem | Divide & Conquer Crossing Sum (with Subarray Output) |
-| **12** | [`q12_strassen_matrix_multiplication.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q12_strassen_matrix_multiplication.cpp) | Strassen's Matrix Mult | Strassen 7 Products vs Normal Multiplication |
-| **13** | [`q13_frac_knapsack_greedy.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q13_frac_knapsack_greedy.cpp) | Fractional Knapsack | Greedy Profit/Weight Ratio Selection |
-| **14** | [`q14_dijkstra_single_source.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q14_dijkstra_single_source.cpp) | Dijkstra's Algorithm | Priority Queue Min-Heap Single Source Paths |
-| **15** | [`q15_mst_krushkal.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q15_mst_krushkal.cpp) | Kruskal's MST | Edge Sorting + Disjoint Set Union (DSU) |
-| **16** | [`q16_mst_prims.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q16_mst_prims.cpp) | Prim's MST | Priority Queue Vertex Growing Minimum Spanning Tree |
-| **17** | [`q17_huffman.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q17_huffman.cpp) | Huffman Coding | Greedy Min-Heap Prefix Code Construction |
-| **18** | [`q18_flloyd_warshall.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q18_flloyd_warshall.cpp) | Floyd-Warshall Algorithm | Dynamic Programming All-Pairs Shortest Paths |
-| **19** | [`q19_0-1_knapsack.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q19_0-1_knapsack.cpp) | 0/1 Knapsack Problem | 2D Dynamic Programming Table + Selected Items |
-| **20** | [`q20_matrix_mux_DP.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q20_matrix_mux_DP.cpp) | Matrix Chain Multiplication | DP Minimum Cost + Optimal Parenthesization |
-| **21** | [`q21_N-Queens.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/q21_N-Queens.cpp) | N-Queens Problem | Backtracking Search (All Boards + Total Count) |
+| **1a** | [`01a_kth_brute.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/01a_kth_brute.cpp) | $K^{\text{th}}$ Smallest via Selection Sort | `n`, array of `n` values, `k` |
+| **1b** | [`01b_kth_quickselect.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/01b_kth_quickselect.cpp) | $K^{\text{th}}$ Smallest via Quickselect | `n`, array of `n` values, `k` |
+| **2a** | [`02a_hanoi_recursive.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/02a_hanoi_recursive.cpp) | Towers of Hanoi Recursive | `n` |
+| **2b** | [`02b_hanoi_iterative.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/02b_hanoi_iterative.cpp) | Towers of Hanoi Iterative (Stacks) | `n` |
+| **3** | [`03_stack_linked_list.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/03_stack_linked_list.cpp) | Stack using Linked List | Menu: `1 val` (Push), `2` (Pop), `3` (Peek), `4` (Display), `5` (Exit) |
+| **4** | [`04_queue_linked_list.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/04_queue_linked_list.cpp) | Queue using Linked List | Menu: `1 val` (Enqueue), `2` (Dequeue), `3` (Front), `4` (Display), `5` (Exit) |
+| **5a** | [`05a_linear_probing.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/05a_linear_probing.cpp) | Hash Table (Linear Probing) | Table size, key count, keys |
+| **5b** | [`05b_quadratic_probing.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/05b_quadratic_probing.cpp) | Hash Table (Quadratic Probing) | Table size, key count, keys |
+| **6** | [`06_two_sum.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/06_two_sum.cpp) | Two Sum Target $T$ ($O(n)$ Hash Set) | `n`, array, target $T$ |
+| **7** | [`07_frequency_hashing.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/07_frequency_hashing.cpp) | Frequency via Hashing | `n`, array |
+| **8** | [`08_merge_sort.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/08_merge_sort.cpp) | Merge Sort (Divide & Conquer) | `n`, array |
+| **9** | [`09_quick_sort.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/09_quick_sort.cpp) | Quick Sort (In-place Partitioning) | `n`, array |
+| **10** | [`10_max_min_divide_conquer.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/10_max_min_divide_conquer.cpp) | Min/Max using Divide and Conquer | `n`, array (outputs min, max, D&C comparisons vs traditional) |
+| **11** | [`11_maximum_subarray.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/11_maximum_subarray.cpp) | Maximum Subarray via D&C | `n`, array (outputs max sum and elements) |
+| **12** | [`12_strassen_matrix.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/12_strassen_matrix.cpp) | Strassen 2x2 vs Normal Multiplication | Eight integers: A rowwise, B rowwise |
+| **13** | [`13_fractional_knapsack.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/13_fractional_knapsack.cpp) | Fractional Knapsack (Greedy) | `n`, capacity, then `n` pairs: `weight profit` |
+| **14** | [`14_dijkstra.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/14_dijkstra.cpp) | Dijkstra Single Source Shortest Path | `n`, `m`, directed (`1`=yes, `0`=no), `m` triples `u v w`, source |
+| **15** | [`15_kruskal.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/15_kruskal.cpp) | Kruskal's MST (DSU) | `n`, `m`, then `m` triples `u v w` |
+| **16** | [`16_prims.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/16_prims.cpp) | Prim's MST | `n`, `m`, then `m` triples `u v w` |
+| **17** | [`17_huffman.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/17_huffman.cpp) | Huffman Coding (Min-Heap) | `n`, then `n` pairs: `char frequency` |
+| **18** | [`18_floyd_warshall.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/18_floyd_warshall.cpp) | Floyd-Warshall All-Pairs Shortest Path | `n`, then $n \times n$ adjacency matrix (`-1` for missing edge) |
+| **19** | [`19_zero_one_knapsack.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/19_zero_one_knapsack.cpp) | 0/1 Knapsack Problem (Dynamic Programming) | `n`, capacity, then `n` pairs: `weight profit` |
+| **20** | [`20_matrix_chain_multiplication.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/20_matrix_chain_multiplication.cpp) | Matrix Chain Multiplication (DP) | `n`, then `n+1` dimensions |
+| **21** | [`21_n_queens.cpp`](file:///Users/surajsharma/Downloads/DAA%20heist/21_n_queens.cpp) | N-Queens Backtracking | `n` (outputs all boards and total count) |

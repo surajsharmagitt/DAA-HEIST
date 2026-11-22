@@ -7,7 +7,7 @@ Node* topNode = nullptr;
 void push(int x) { topNode = new Node{x, topNode}; }
 
 void pop() {
-    if (!topNode) { cout << "Underflow\n"; return; }
+    if (!topNode) { cout << "Empty\n"; return; }
     Node* temp = topNode;
     cout << "Popped: " << temp->data << '\n';
     topNode = topNode->next;
@@ -27,8 +27,7 @@ int main() {
         else if (choice == 3) {
             if (topNode) cout << "Top: " << topNode->data << '\n';
             else cout << "Empty\n";
-        }
-        else if (choice == 4) display();
+        } else if (choice == 4) display();
     }
     while (topNode) { Node* p = topNode; topNode = p->next; delete p; }
 }
