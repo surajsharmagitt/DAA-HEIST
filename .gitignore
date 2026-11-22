@@ -1,0 +1,8 @@
+# Compiled binaries
+*.out
+*.o
+*.obj
+
+# OS metadata
+.DS_Store
+Thumbs.db
