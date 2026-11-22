@@ -1,13 +1,10 @@
-#include <iostream>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
     long long a, b, c, d, e, f, g, h;
-    cout << "Enter elements of Matrix A (2x2): ";
-    if (!(cin >> a >> b >> c >> d)) return 0;
-    cout << "Enter elements of Matrix B (2x2): ";
-    if (!(cin >> e >> f >> g >> h)) return 0;
+    cin >> a >> b >> c >> d;
+    cin >> e >> f >> g >> h;
 
     long long p1 = (a + d) * (e + h);
     long long p2 = (c + d) * e;
@@ -22,8 +19,9 @@ int main() {
     long long c21 = p2 + p4;
     long long c22 = p1 - p2 + p3 + p6;
 
-    cout << "\nResultant Matrix (Strassen's Algorithm - 7 Multiplications):\n";
-    cout << c11 << ' ' << c12 << '\n';
-    cout << c21 << ' ' << c22 << '\n';
-    return 0;
+    cout << "Strassen:\n";
+    cout << c11 << ' ' << c12 << '\n' << c21 << ' ' << c22 << '\n';
+    cout << "Normal:\n";
+    cout << a * e + b * g << ' ' << a * f + b * h << '\n';
+    cout << c * e + d * g << ' ' << c * f + d * h << '\n';
 }

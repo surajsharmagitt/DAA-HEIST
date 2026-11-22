@@ -1,5 +1,4 @@
-#include <iostream>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 void hanoi(int n, char from, char help, char to) {
@@ -11,12 +10,7 @@ void hanoi(int n, char from, char help, char to) {
 
 int main() {
     int n;
-    cout << "Enter number of disks: ";
-    if (!(cin >> n) || n < 1 || n > 20) {
-        cout << "Enter n from 1 to 20\n";
-        return 0;
-    }
-    cout << "\n--- Recursive Method ---\n";
+    cin >> n;
+    if (n < 1 || n > 20) return cout << "Enter n from 1 to 20\n", 0;
     hanoi(n, 'A', 'B', 'C');
-    return 0;
 }

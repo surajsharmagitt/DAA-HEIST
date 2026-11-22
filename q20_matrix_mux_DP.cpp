@@ -1,21 +1,15 @@
-#include <iostream>
-#include <vector>
-#include <climits>
-#include <functional>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
     int n;
-    cout << "Enter number of matrices: ";
-    if (!(cin >> n) || n < 1) return 0;
+    cin >> n;
     vector<long long> p(n + 1);
-    cout << "Enter " << n + 1 << " dimensions:\n";
     for (long long &x : p) cin >> x;
 
     const long long INF = LLONG_MAX / 4;
     vector<vector<long long>> dp(n + 1, vector<long long>(n + 1, 0));
-    vector<vector<int>> split(n + 1, vector<int>(n + 1, 0));
+    vector<vector<int>> split(n + 1, vector<int>(n + 1));
 
     for (int len = 2; len <= n; len++) {
         for (int i = 1; i + len - 1 <= n; i++) {
@@ -32,19 +26,14 @@ int main() {
     }
 
     function<void(int, int)> printOrder = [&](int i, int j) {
-        if (i == j) {
-            cout << 'A' << i;
-            return;
-        }
+        if (i == j) { cout << 'A' << i; return; }
         cout << '(';
         printOrder(i, split[i][j]);
         printOrder(split[i][j] + 1, j);
         cout << ')';
     };
-
-    cout << "\nMinimum number of multiplications = " << dp[1][n] << '\n';
-    cout << "Optimal Parenthesization: ";
+    if (n < 1) return 0;
+    cout << "Minimum multiplications: " << dp[1][n] << '\n';
     printOrder(1, n);
     cout << '\n';
-    return 0;
 }

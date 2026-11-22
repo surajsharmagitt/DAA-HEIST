@@ -1,15 +1,10 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
     int n, capacity;
-    cout << "Enter number of items and knapsack capacity: ";
-    if (!(cin >> n >> capacity) || n <= 0) return 0;
+    cin >> n >> capacity;
     vector<int> weight(n + 1), profit(n + 1);
-    cout << "Enter weight and profit of each item:\n";
     for (int i = 1; i <= n; i++) cin >> weight[i] >> profit[i];
 
     vector<vector<int>> dp(n + 1, vector<int>(capacity + 1, 0));
@@ -20,7 +15,7 @@ int main() {
                 dp[i][w] = max(dp[i][w], profit[i] + dp[i - 1][w - weight[i]]);
         }
     }
-    cout << "\nMaximum profit: " << dp[n][capacity] << '\n';
+    cout << "Maximum profit: " << dp[n][capacity] << '\n';
     cout << "Selected items: ";
     int w = capacity;
     for (int i = n; i >= 1; i--) {
@@ -30,5 +25,4 @@ int main() {
         }
     }
     cout << '\n';
-    return 0;
 }

@@ -1,9 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <cstdlib>
-#include <ctime>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 int partitionArray(vector<int>& a, int l, int r) {
@@ -16,18 +11,13 @@ int partitionArray(vector<int>& a, int l, int r) {
 
 int main() {
     int n, k;
-    cout << "Enter number of elements: ";
-    if (!(cin >> n) || n <= 0) return 0;
+    cin >> n;
     vector<int> a(n);
-    cout << "Enter elements: ";
     for (int &x : a) cin >> x;
-    cout << "Enter k: ";
     cin >> k;
-    if (k < 1 || k > n) {
-        cout << "Invalid k\n";
-        return 0;
-    }
-    srand((unsigned int)time(nullptr));
+    if (k < 1 || k > n) return cout << "Invalid k\n", 0;
+
+    srand(time(nullptr));
     int l = 0, r = n - 1;
     while (l <= r) {
         swap(a[r], a[l + rand() % (r - l + 1)]);
@@ -39,5 +29,4 @@ int main() {
         if (p < k - 1) l = p + 1;
         else r = p - 1;
     }
-    return 0;
 }

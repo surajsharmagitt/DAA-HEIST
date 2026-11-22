@@ -1,16 +1,10 @@
-#include <iostream>
-#include <vector>
-#include <functional>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
     int n;
-    cout << "Enter number of Queens (N): ";
-    if (!(cin >> n) || n < 1 || n > 15) {
-        cout << "Enter n from 1 to 15\n";
-        return 0;
-    }
+    cin >> n;
+    if (n < 1 || n > 12) return cout << "Enter n from 1 to 12\n", 0;
     vector<int> queen(n);
     vector<bool> column(n, false), diag1(2 * n, false), diag2(2 * n, false);
     int solutions = 0;
@@ -23,7 +17,6 @@ int main() {
                     cout << (queen[i] == j ? 'Q' : '.') << ' ';
                 cout << '\n';
             }
-            cout << '\n';
             return;
         }
         for (int col = 0; col < n; col++) {
@@ -37,5 +30,4 @@ int main() {
     };
     solve(0);
     cout << "Total solutions: " << solutions << '\n';
-    return 0;
 }

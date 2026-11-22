@@ -1,8 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <queue>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 struct Node {
@@ -14,19 +10,16 @@ struct Node {
 };
 
 struct Compare {
-    bool operator()(Node* a, Node* b) {
-        return a->freq > b->freq;
-    }
+    bool operator()(Node* a, Node* b) { return a->freq > b->freq; }
 };
 
 void printCodes(Node* root, string code) {
-    if (!root) return;
     if (!root->left && !root->right) {
         cout << root->ch << " : " << (code.empty() ? "0" : code) << '\n';
         return;
     }
-    printCodes(root->left, code + "0");
-    printCodes(root->right, code + "1");
+    printCodes(root->left, code + '0');
+    printCodes(root->right, code + '1');
 }
 
 void deleteTree(Node* root) {
@@ -38,18 +31,13 @@ void deleteTree(Node* root) {
 
 int main() {
     int n;
-    cout << "Enter number of characters: ";
-    if (!(cin >> n) || n <= 0) return 0;
+    cin >> n;
+    if (n <= 0) return 0;
     priority_queue<Node*, vector<Node*>, Compare> pq;
-    cout << "Enter characters and frequencies:\n";
     for (int i = 0; i < n; i++) {
-        char c;
-        long long f;
+        char c; long long f;
         cin >> c >> f;
-        if (f <= 0) {
-            cout << "Invalid frequency\n";
-            return 0;
-        }
+        if (f <= 0) return cout << "Invalid frequency\n", 0;
         pq.push(new Node(c, f));
     }
     while (pq.size() > 1) {
@@ -58,8 +46,6 @@ int main() {
         pq.push(new Node('\0', a->freq + b->freq, a, b));
     }
     Node* root = pq.top();
-    cout << "\nHuffman Codes:\n";
     printCodes(root, "");
     deleteTree(root);
-    return 0;
 }

@@ -1,11 +1,9 @@
-#include <iostream>
-#include <vector>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 void mergeSort(vector<int>& a, int l, int r) {
     if (l >= r) return;
-    int mid = l + (r - l) / 2;
+    int mid = (l + r) / 2;
     mergeSort(a, l, mid);
     mergeSort(a, mid + 1, r);
 
@@ -22,21 +20,10 @@ void mergeSort(vector<int>& a, int l, int r) {
 
 int main() {
     int n;
-    cout << "Enter number of elements: ";
-    if (!(cin >> n) || n <= 0) return 0;
+    cin >> n;
     vector<int> a(n);
-    cout << "Enter array elements: ";
     for (int &x : a) cin >> x;
-    mergeSort(a, 0, n - 1);
-    cout << "Sorted array: ";
+    if (n > 0) mergeSort(a, 0, n - 1);
     for (int x : a) cout << x << ' ';
     cout << '\n';
-
-    cout << "\n--- Time Complexity Analysis ---\n";
-    cout << "Recurrence Relation: T(n) = 2T(n/2) + O(n)\n";
-    cout << "Best Case:    O(n log n)\n";
-    cout << "Average Case: O(n log n)\n";
-    cout << "Worst Case:   O(n log n)\n";
-    cout << "Space Complexity: O(n) auxiliary space\n";
-    return 0;
 }
